@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js with CDN</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        {{ message }}
+    </div>
+    <div id="app2">
+        {{ template }}   
+    </div> 
+    <script>
+        const { createApp, ref} = Vue
+      
+        createApp({
+          setup() {
+            const message = ref('Hello vue! This is a Vue.js app running with CDN.');
+            
+            return {
+              message
+            }
+          },
+        }).mount('#app')
+
+        createApp({
+          setup() {
+            const message = ref('Hello vue! This is a Vue.js app running with CDN. Using template syntax.');            
+            return {
+              message
+            }
+          },
+          template : `<h1>{{ message }}</h1>`,
+        }).mount('#app2')
+      </script>
+    
+</body>
+</html>

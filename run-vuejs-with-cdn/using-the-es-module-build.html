@@ -1,0 +1,39 @@
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js with CDN and Using the ES Module Build</title>
+    </head>
+    <body>
+        
+        <div id="app">
+            {{ message }}
+        </div>
+        <div id="app2">
+            {{ template }}   
+        </div> 
+        <!-- Notice that we are using <script type="module">, and the imported CDN URL is pointing to the ES modules build of Vue instead. -->
+        <script type="module">
+            import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+          
+            createApp({
+              setup() {
+                const message = ref('Hello vue! This is a Vue.js app running with CDN.');
+                
+                return {
+                  message
+                }
+              },
+            }).mount('#app')
+
+            createApp({
+              setup() {
+                const message = ref('Hello vue! This is a Vue.js app running with CDN. Using template syntax.');            
+                return {
+                  message
+                }
+              },
+              template : `<h1>{{ message }}</h1>`,
+            }).mount('#app2')
+          </script>
+</html>
